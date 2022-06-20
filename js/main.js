@@ -5,6 +5,7 @@ el: "#app",
 
     data: {
         emailGenerated: '',
+        emailGenerated: '',
     },
 	
 
@@ -12,17 +13,15 @@ el: "#app",
 
         questionCicle() {
             this.emailGenerated = [];
+
             for (let i = 0; i < 10; i++) {
-                getAxiosResponse();
+                    axios.get("https://flynn.boolean.careers/exercises/api/random/mail")
+        .then((axiosResp) => {
+            this.emailGenerated.push(axiosResp.data.response);
+            console.log(this.emailGenerated);
+        });
             }
         },
 
-        getAxiosResponse() {
-        axios.get("https://flynn.boolean.careers/exercises/api/random/mail")
-        .then((axiosResp) => {
-            this.emailGenerated = axiosResp.data.response;
-            console.log(this.emailGenerated);
-        });
-        },
     },
 });
